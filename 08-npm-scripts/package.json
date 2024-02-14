@@ -1,0 +1,17 @@
+{
+  "name": "08-npm-scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "prebuild": "npm install",
+    "start:dev": "node src/index.js",
+    "start:watch": "node --watch src/index.js",
+    "test:run": "..",
+    "test:unit": ".."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
