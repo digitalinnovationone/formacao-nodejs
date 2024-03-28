@@ -1,0 +1,1 @@
+import f from"net";import{g as s}from"./get-pipe-path-b74d9893.mjs";const i=()=>new Promise(t=>{const n=s(process.ppid),e=f.createConnection(n,()=>{t(c=>{const o=Buffer.from(JSON.stringify(c)),r=Buffer.alloc(4);r.writeInt32BE(o.length,0),e.write(Buffer.concat([r,o]))})});e.on("error",()=>{t()}),e.unref()}),p=i();export{p as c};

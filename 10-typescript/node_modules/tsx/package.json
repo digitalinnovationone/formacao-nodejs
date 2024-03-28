@@ -1,0 +1,46 @@
+{
+  "name": "tsx",
+  "version": "4.7.1",
+  "description": "TypeScript Execute (tsx): Node.js enhanced with esbuild to run TypeScript & ESM files",
+  "keywords": [
+    "esbuild",
+    "runtime",
+    "node",
+    "cjs",
+    "commonjs",
+    "esm",
+    "typescript"
+  ],
+  "license": "MIT",
+  "repository": "privatenumber/tsx",
+  "author": {
+    "name": "Hiroki Osame",
+    "email": "hiroki.osame@gmail.com"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "bin": "./dist/cli.mjs",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./dist/loader.mjs",
+    "./cjs": "./dist/cjs/index.cjs",
+    "./esm": "./dist/esm/index.mjs",
+    "./cli": "./dist/cli.mjs",
+    "./source-map": "./dist/source-map.cjs",
+    "./suppress-warnings": "./dist/suppress-warnings.cjs",
+    "./preflight": "./dist/preflight.cjs",
+    "./repl": "./dist/repl.mjs"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "esbuild": "~0.19.10",
+    "get-tsconfig": "^4.7.2"
+  },
+  "optionalDependencies": {
+    "fsevents": "~2.3.3"
+  }
+}

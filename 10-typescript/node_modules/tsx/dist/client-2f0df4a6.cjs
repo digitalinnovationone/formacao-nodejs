@@ -1,0 +1,1 @@
+"use strict";var i=require("net"),s=require("./get-pipe-path-86e97fc9.cjs");const f=()=>new Promise(r=>{const o=s.getPipePath(process.ppid),e=i.createConnection(o,()=>{r(c=>{const t=Buffer.from(JSON.stringify(c)),n=Buffer.alloc(4);n.writeInt32BE(t.length,0),e.write(Buffer.concat([n,t]))})});e.on("error",()=>{r()}),e.unref()}),a=f();exports.connectingToServer=a;

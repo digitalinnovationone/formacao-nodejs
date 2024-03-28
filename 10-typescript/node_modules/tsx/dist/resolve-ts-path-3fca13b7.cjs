@@ -1,0 +1,1 @@
+"use strict";var o=require("path");const s=Object.create(null);s[".js"]=[".ts",".tsx",".js",".jsx"],s[".jsx"]=[".tsx",".ts",".jsx",".js"],s[".cjs"]=[".cts"],s[".mjs"]=[".mts"];const j=t=>{const c=o.extname(t),[x,e]=o.extname(t).split("?"),n=s[x];if(n){const r=t.slice(0,-c.length);return n.map(i=>r+i+(e?`?${e}`:""))}};exports.resolveTsPath=j;
