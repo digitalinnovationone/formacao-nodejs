@@ -97,7 +97,36 @@
   </li>
 </ul>
 
-<b>Condição de vitória:</b>
+<b> Condição de vitória:</b>
 
 <input type="checkbox" id="vitoria-item" />
 <label for="vitoria-item">Ao final, vence quem acumulou mais pontos</label>
+
+<H2>💪 Tarefa a ser realizada:</H2>
+
+<p>Modificar a regra de pontuação do bloco CONFRONTO da seguinte forma:</p>
+<ul>
+  <li> Sortear aleatoriamente um casco (-1 ponto) ou uma bomba (-2 pontos)</li>
+  <li> Ao vencedor do confronto somar aleatoriamente um turbo (+ 1 ponto)</li>
+</ul>
+
+<H2>🤺 Modificações realizadas:</H2>
+
+<p>O código original disponível no diretório gitHub foi utilizado como ponto de partida visto que é o mesmo código apresentado nas video aulas.</p>
+
+<p>As seguintes modifiacações foram realizadas:</p>
+
+<ul>
+  <li>Alguns exemplos explanados nas video aulas foram incluídos em forma de comentário.</li>
+  <li>Foi incluído a possibilidade de jogar com 2 a 6 personagens.</li>
+  <li>Foi incluído a possibilidade de escolher manualmente, ou aleatoriamente, os personagens.</li>
+  <li>Para o bloco CONFRONTO a regra de pontuação foi modificada da seguinte forma:</li>
+  <ul>
+    <li>Sorteio aleatório entre um casco (-1 ponto) ou uma bomba (-2 pontos).</li>
+    <li>Soma aleatória de um turbo (+ 1 ponto) à pontuação do vencedor.</li>
+  </ul>
+  <li>Os personagens foram definidos como um array de objetos, sendo incluído laços de repetição for para acessar os elementos.</li>
+  <li>Foi incluído rotinas para determinar o valor máximo da pontuação e identificar os vencedores, perdedores e tratativas de pontuação.</li>
+</ul>
+
+
