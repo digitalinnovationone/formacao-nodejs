@@ -40,7 +40,7 @@ async function logRollResult(characterName, block, diceResult, attribute) {
   console.log(
     `${characterName} 🎲 rolou um dado de ${block} ${diceResult} + ${attribute} = ${
       diceResult + attribute
-    }`
+    }`,
   );
 }
 
@@ -68,14 +68,14 @@ async function playRaceEngine(character1, character2) {
         character1.NOME,
         "velocidade",
         diceResult1,
-        character1.VELOCIDADE
+        character1.VELOCIDADE,
       );
 
       await logRollResult(
         character2.NOME,
         "velocidade",
         diceResult2,
-        character2.VELOCIDADE
+        character2.VELOCIDADE,
       );
     }
 
@@ -87,14 +87,14 @@ async function playRaceEngine(character1, character2) {
         character1.NOME,
         "manobrabilidade",
         diceResult1,
-        character1.MANOBRABILIDADE
+        character1.MANOBRABILIDADE,
       );
 
       await logRollResult(
         character2.NOME,
         "manobrabilidade",
         diceResult2,
-        character2.MANOBRABILIDADE
+        character2.MANOBRABILIDADE,
       );
     }
 
@@ -108,35 +108,60 @@ async function playRaceEngine(character1, character2) {
         character1.NOME,
         "poder",
         diceResult1,
-        character1.PODER
+        character1.PODER,
       );
 
       await logRollResult(
         character2.NOME,
         "poder",
         diceResult2,
-        character2.PODER
+        character2.PODER,
       );
 
-      if (powerResult1 > powerResult2 && character2.PONTOS > 0) {
-        console.log(
-          `${character1.NOME} venceu o confronto! ${character2.NOME} perdeu 1 ponto 🐢`
-        );
-        character2.PONTOS--;
-      }
-
-      if (powerResult2 > powerResult1 && character1.PONTOS > 0) {
-        console.log(
-          `${character2.NOME} venceu o confronto! ${character1.NOME} perdeu 1 ponto 🐢`
-        );
-        character1.PONTOS--;
-      }
-
+      // sorteio do item aplicado ao perdedor: CASCO (-1) ou BOMBA (-2)
+      const items = [
+        { nome: "CASCO", penalidade: 1 },
+        { nome: "BOMBA", penalidade: 2 },
+      ];
+      const sorteado = items[Math.floor(Math.random() * items.length)];
       console.log(
-        powerResult2 === powerResult1
-          ? "Confronto empatado! Nenhum ponto foi perdido"
-          : ""
+        `Item sorteado no confronto: ${sorteado.nome} (perde ${sorteado.penalidade} ponto(s) se perder)`,
       );
+
+      if (powerResult1 > powerResult2) {
+        const lost = Math.min(sorteado.penalidade, character2.PONTOS);
+        if (lost > 0) {
+          character2.PONTOS -= lost;
+          console.log(
+            `${character1.NOME} venceu o confronto! ${character2.NOME} perdeu ${lost} ponto(s) 🐢`,
+          );
+        } else {
+          console.log(`${character2.NOME} não tinha pontos para perder`);
+        }
+
+        // chance aleatória de ganhar turbo (+1 ponto)
+        if (Math.random() < 0.5) {
+          character1.PONTOS++;
+          console.log(`${character1.NOME} ganhou um turbo! +1 ponto ⚡`);
+        }
+      } else if (powerResult2 > powerResult1) {
+        const lost = Math.min(sorteado.penalidade, character1.PONTOS);
+        if (lost > 0) {
+          character1.PONTOS -= lost;
+          console.log(
+            `${character2.NOME} venceu o confronto! ${character1.NOME} perdeu ${lost} ponto(s) 🐢`,
+          );
+        } else {
+          console.log(`${character1.NOME} não tinha pontos para perder`);
+        }
+
+        if (Math.random() < 0.5) {
+          character2.PONTOS++;
+          console.log(`${character2.NOME} ganhou um turbo! +1 ponto ⚡`);
+        }
+      } else {
+        console.log("Confronto empatado! Nenhum ponto foi perdido");
+      }
     }
 
     // verificando o vencedor
@@ -166,7 +191,7 @@ async function declareWinner(character1, character2) {
 
 (async function main() {
   console.log(
-    `🏁🚨 Corrida entre ${player1.NOME} e ${player2.NOME} começando...\n`
+    `🏁🚨 Corrida entre ${player1.NOME} e ${player2.NOME} começando...\n`,
   );
 
   await playRaceEngine(player1, player2);
